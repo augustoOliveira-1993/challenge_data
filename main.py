@@ -1,10 +1,17 @@
-"""Pipeline entry point: python main.py"""
+"""Pipeline entry point: python main.py
+
+Runs the Medallion layers in order: Bronze -> Silver -> Gold.
+Each layer reads the file persisted by the previous one.
+"""
 
 import logging
+import sys
 
 from src.bronze.ingest_bronze import ingest_bronze
 from src.gold.build_gold import build_gold
 from src.silver.transform_silver import transform_silver
+
+logger = logging.getLogger("pipeline")
 
 
 def configure_logging():
@@ -19,11 +26,17 @@ def configure_logging():
 
 
 def run_pipeline():
+    logger.info("Pipeline started")
     ingest_bronze()
     transform_silver()
     build_gold()
+    logger.info("Pipeline finished successfully")
 
 
 if __name__ == "__main__":
     configure_logging()
-    run_pipeline()
+    try:
+        run_pipeline()
+    except Exception:
+        logger.exception("Pipeline failed")
+        sys.exit(1)
