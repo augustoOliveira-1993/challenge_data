@@ -1,0 +1,11 @@
+issue_id,issue_type,status,priority,assignee_id,assignee_name,assignee_email,created_at,resolved_at,project_id,extracted_at,rejection_reason
+JIRA-0991,Story,Done,High,u004,Francinne,francinne@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0992,Story,Open,Low,u005,Adyna,adyna@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0993,Bug,Resolved,Low,u002,Gionni Lucio,gionni.lucio@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0994,Task,Done,High,u004,Francinne,francinne@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0995,Bug,Resolved,Low,u001,Matheus Malta,matheus.malta@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0996,Task,Done,Low,u004,Francinne,francinne@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0997,Task,Open,Medium,u003,Guilherme Francisco,guilherme@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0998,Task,Resolved,Low,u001,Matheus Malta,matheus.malta@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-0999,Task,Done,High,u005,Adyna,adyna@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
+JIRA-1000,Bug,Open,Low,u004,Francinne,francinne@fasttrack.com,2026-02-30T25:61:00Z,not_a_date,DT-ENG,2026-01-22T13:55:26Z,invalid_created_at
