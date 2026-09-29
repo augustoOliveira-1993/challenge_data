@@ -3,6 +3,7 @@
 import logging
 
 from src.bronze.ingest_bronze import ingest_bronze
+from src.gold.build_gold import build_gold
 from src.silver.transform_silver import transform_silver
 
 
@@ -20,6 +21,7 @@ def configure_logging():
 def run_pipeline():
     ingest_bronze()
     transform_silver()
+    build_gold()
 
 
 if __name__ == "__main__":

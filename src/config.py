@@ -20,6 +20,7 @@ LOCAL_SOURCE_FILE = RESOURCES_DIR / "jira_issues_raw.json"
 BRONZE_ISSUES_FILE = BRONZE_DIR / "bronze_issues.json"
 SILVER_ISSUES_FILE = SILVER_DIR / "silver_issues.parquet"
 SILVER_REJECTED_FILE = SILVER_DIR / "silver_issues_rejected.csv"
+GOLD_SLA_ISSUES_FILE = GOLD_DIR / "gold_sla_issues.csv"
 
 AZURE_ENV_VARS = (
     "ACCOUNT_URL",
