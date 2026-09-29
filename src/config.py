@@ -21,6 +21,8 @@ BRONZE_ISSUES_FILE = BRONZE_DIR / "bronze_issues.json"
 SILVER_ISSUES_FILE = SILVER_DIR / "silver_issues.parquet"
 SILVER_REJECTED_FILE = SILVER_DIR / "silver_issues_rejected.csv"
 GOLD_SLA_ISSUES_FILE = GOLD_DIR / "gold_sla_issues.csv"
+GOLD_SLA_BY_ANALYST_FILE = GOLD_DIR / "gold_sla_by_analyst.csv"
+GOLD_SLA_BY_ISSUE_TYPE_FILE = GOLD_DIR / "gold_sla_by_issue_type.csv"
 
 AZURE_ENV_VARS = (
     "ACCOUNT_URL",

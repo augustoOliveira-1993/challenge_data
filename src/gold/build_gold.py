@@ -4,7 +4,13 @@ import logging
 
 import pandas as pd
 
-from src.config import GOLD_DIR, GOLD_SLA_ISSUES_FILE, SILVER_ISSUES_FILE
+from src.config import (
+    GOLD_DIR,
+    GOLD_SLA_BY_ANALYST_FILE,
+    GOLD_SLA_BY_ISSUE_TYPE_FILE,
+    GOLD_SLA_ISSUES_FILE,
+    SILVER_ISSUES_FILE,
+)
 from src.holidays_api import fetch_national_holidays
 from src.silver.transform_silver import CLOSED_STATUSES, DATE_FORMAT
 from src.sla_calculation import calculate_resolution_hours, check_sla_compliance, get_sla_expected_hours
@@ -54,6 +60,17 @@ def build_sla_table(closed_issues, holidays):
     return sla_issues[GOLD_SLA_COLUMNS]
 
 
+def build_sla_report(sla_issues, group_column):
+    """Aggregate issue count and average resolution hours (average SLA) by a column."""
+    report = (
+        sla_issues.groupby(group_column)
+        .agg(issue_count=("issue_id", "count"), avg_resolution_hours=("resolution_hours", "mean"))
+        .reset_index()
+    )
+    report["avg_resolution_hours"] = report["avg_resolution_hours"].round(2)
+    return report
+
+
 def build_gold():
     """Build the Gold layer from the Silver file and persist it locally."""
     closed_issues = filter_closed_issues(read_silver_issues())
@@ -62,7 +79,6 @@ def build_gold():
 
     GOLD_DIR.mkdir(parents=True, exist_ok=True)
     sla_issues.to_csv(GOLD_SLA_ISSUES_FILE, index=False, date_format=DATE_FORMAT)
-
     logger.info(
         "Gold written: %s (issues=%d, sla_met=%d, sla_violated=%d)",
         GOLD_SLA_ISSUES_FILE,
@@ -70,4 +86,13 @@ def build_gold():
         sla_issues["is_sla_met"].sum(),
         (~sla_issues["is_sla_met"]).sum(),
     )
+
+    reports = {
+        GOLD_SLA_BY_ANALYST_FILE: build_sla_report(sla_issues, "assignee_name"),
+        GOLD_SLA_BY_ISSUE_TYPE_FILE: build_sla_report(sla_issues, "issue_type"),
+    }
+    for report_file, report in reports.items():
+        report.to_csv(report_file, index=False)
+        logger.info("Report written: %s (rows=%d)", report_file, len(report))
+
     return GOLD_SLA_ISSUES_FILE
